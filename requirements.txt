@@ -1,6 +1,7 @@
-torch>=2.1
-torchvision>=0.16
-numpy
-pandas
-pillow
-matplotlib   # only for the training-curve plot written by train.py
+torch==2.11.0
+torchvision==0.26.0
+numpy==2.4.6
+pandas==3.0.5
+pillow==12.3.0
+ipykernel==7.3.0
+matplotlib==3.11.2

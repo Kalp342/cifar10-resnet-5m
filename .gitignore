@@ -6,3 +6,11 @@ __pycache__/
 submission*.csv
 !results/*.csv
 .ipynb_checkpoints/
+
+!training/outputs/split_seed42.npz
+training/train_labels.csv
+training/test.csv
+training/outputs/*.npy
+training/outputs/replica_kd/colab_compress/
+training/outputs/replica_kd/smoke/
+.venv/

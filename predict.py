@@ -16,6 +16,11 @@ from model import load_model, predict, count_params, CONFIGS
 
 
 def find(root, name, want_dir=False):
+    direct = os.path.join(root, name)
+    if want_dir and os.path.isdir(direct) and glob.glob(os.path.join(direct, "*.png")):
+        return direct
+    if not want_dir and os.path.isfile(direct):
+        return direct
     hits = [p for p in glob.glob(os.path.join(root, "**", name), recursive=True) if os.path.isdir(p) == want_dir]
     if not hits:
         raise FileNotFoundError(f"could not find {name} under {root}")
@@ -45,7 +50,7 @@ def main():
 
     probs = predict(net, images, views=args.views)
     labels = probs.argmax(1)
-    pd.DataFrame({"id": test["id"], "label": labels}).to_csv(args.out, index=False)
+    pd.DataFrame({"id": test["id"], "label": labels}).to_csv(args.out, index=False, lineterminator="\n")
     print(f"wrote {args.out}: {len(labels)} predictions, class counts {np.bincount(labels, minlength=10).tolist()}, "
           f"{time.time() - t0:.0f}s")
 

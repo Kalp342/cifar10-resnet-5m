@@ -11,4 +11,4 @@ kd3_sam,3,"64,128,256","3,5,3","1,2,2",4918602,500,31,all 50k,kd2 recipe + SAM; 
 soup_kd2,4,"64,128,256","3,5,3","1,2,2",4918602,4 x 30 fine-tune,101-104,all 50k,weight average of 4 fine-tuned copies of kd2_student,,0.905,0.865
 soup_kd3 (FINAL PICK),4,"64,128,256","3,5,3","1,2,2",4918602,4 x 30 fine-tune,101-104,all 50k,weight average of 4 fine-tuned copies of kd3_sam,,0.905,0.867
 highres,5,"64,128,256","3,5,3","1,1,2",4918602,300,41,all 50k,"distillation from b11, b12, w1, w2; 3.1x compute per image",,0.903,0.870
-"compressed student (FINAL PICK, Rishi Ajith)",6,"64,128,256","3,5,3","1,2,2",4918602,40 fine-tune,,all 50k + unlabelled test images,soup_kd2 fine-tuned to match a 5-model ensemble on the unlabelled test images,,0.906,0.875
+"compressed student (FINAL PICK, Rishi Ajith)",6,"64,128,256","3,5,3","1,2,2",4918602,40 fine-tune,51,all 50k + unlabelled test images,soup_kd2 fine-tuned to match a 5-model ensemble on the unlabelled test images,,0.906,0.875

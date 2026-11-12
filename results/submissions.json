@@ -1,0 +1,48 @@
+{
+  "source": "Final team report, Kaggle leaderboard results. Raw hidden labels are held by Kaggle.",
+  "compressed": {
+    "filename": "tm_compress_seed51_ema_final_flip.csv",
+    "public": 0.906,
+    "private": 0.875,
+    "epochs": 40,
+    "parameters": 4918602,
+    "csv_sha256": "56ddeeebeeab7ad9e16c45e2d21874cde2e434ace8354a394b4d60ab066a3aab",
+    "weights_sha256": "e70fec47366499b633d8e447cea745064e9671b32940951766c0c257b80b5d21",
+    "rows": 2000,
+    "classes": [
+      180,
+      219,
+      206,
+      201,
+      199,
+      209,
+      184,
+      203,
+      202,
+      197
+    ],
+    "fixed_model_diagnostics": {
+      "cifar10.1_v6": {
+        "accuracy": 0.9355,
+        "nll": 0.2837032377719879,
+        "n": 2000
+      },
+      "cifar10.2_test": {
+        "accuracy": 0.8905,
+        "nll": 0.44290998578071594,
+        "n": 2000
+      }
+    }
+  },
+  "teammate_soup": {
+    "filename": "submission_soup_kd3_tta10.csv",
+    "public": 0.905,
+    "private": 0.867,
+    "method": "KD3 SAM student soup, ten-view inference",
+    "checkpoint": "checkpoints/soup_kd3_model_final.pt",
+    "parameters": 4918602,
+    "rows": 2000,
+    "csv_sha256": "2980a5a694ee0420981c886c25043fb3475ac657996f11e1f90f5bb0a431626b",
+    "weights_sha256": "6437b94a867a56f1a25939b54e853945942b120a1e466710f4e5d76407b55f37"
+  }
+}

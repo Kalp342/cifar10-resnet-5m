@@ -1,0 +1,7 @@
+{
+  "soup_kd2_model_final.pt": "661aaee28d81248c94a83f23b30614b09e8649a9310fa4e138830e0ffc069331",
+  "teacher_b11_model_final.pt": "47868810e5209302dc6983e025d5dd9997bb26f74171f6d7b8ee443faf1c68df",
+  "teacher_b12_model_final.pt": "d5a47041e642784f14e35104c4e087467cebc05649a894992952f2dcb7b592c4",
+  "teacher_w1_model_final.pt": "d28d7402bf17912122dbbbf8d664285a1b880c1690a8496f83bc7544c8ac3dfe",
+  "teacher_w2_model_final.pt": "38a2100bfbf1f1189b3cc9eb9a7cf6c3155e91b3d7e390165d4d2339477675d0"
+}

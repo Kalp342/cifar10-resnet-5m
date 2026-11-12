@@ -1,0 +1,62 @@
+{
+  "architecture": "teammate_postact_resnet_3_5_3_64_128_256",
+  "parameters_expected": 4918602,
+  "data": "warm start from teammate's 0.905 soup; teammate recipe on 50k labeled with online KD from his 4 teachers; plus a KL term matching the fixed 10-view T=4 predictions of 4 teachers + soup on the 2k unlabeled competition test images (no test labels)",
+  "batch_size": 256,
+  "lr": 0.02,
+  "momentum": 0.9,
+  "nesterov": true,
+  "weight_decay": 0.0005,
+  "decay_excludes": "BN and bias (ndim<=1)",
+  "warmup_epochs": 1,
+  "schedule": "per-step linear warmup then cosine to 0",
+  "temperature": 4.0,
+  "kd_weight": 0.9,
+  "ce_weight": 0.1,
+  "label_smoothing": 0.1,
+  "cutmix_probability": 0.5,
+  "cutmix_beta": 1.0,
+  "cutmix_disabled_last_epochs": 10,
+  "erasing_probability": 0.25,
+  "ema_decay": 0.999,
+  "teachers": [
+    "tm_b11",
+    "tm_b12",
+    "tm_w1",
+    "tm_w2"
+  ],
+  "teacher_views": "teachers evaluated on the identical augmented/CutMixed RGB tensor, own normalization each",
+  "normalization": {
+    "mean": [
+      0.49139967861519607,
+      0.48215840839460783,
+      0.44653091444546567
+    ],
+    "std": [
+      0.24703223246174102,
+      0.24348512800151828,
+      0.26158784172803257
+    ]
+  },
+  "amp": "bf16 autocast forward, fp32 loss and parameters",
+  "snapshot_every": 10,
+  "recipe_source": "docs/TEAMMATE_APPROACH.md user-reported .904 recipe; unspecified details use standard values",
+  "name": "tm_soup_compress_seed51",
+  "seed": 51,
+  "epochs": 40,
+  "workers": 8,
+  "thermal_guard": false,
+  "cutoff_utc": null,
+  "init": "tm_soup",
+  "compress": true,
+  "compress_teachers": [
+    "tm_b11",
+    "tm_b12",
+    "tm_w1",
+    "tm_w2",
+    "tm_soup"
+  ],
+  "compress_views": 10,
+  "compress_batch": 128,
+  "compress_weight": 1.0
+}

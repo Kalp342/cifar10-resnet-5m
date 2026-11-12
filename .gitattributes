@@ -1,0 +1,4 @@
+*.csv -text
+*.pt binary
+*.npz binary
+*.pdf binary

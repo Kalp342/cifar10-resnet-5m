@@ -1,0 +1,9 @@
+{
+  "seed": 42,
+  "train_rows": 45000,
+  "validation_rows": 5000,
+  "train_labels_sha256": "b596f4cbb12107ecac987e3a61123af40408a6bb83719a1dbb5cc3ce70968e93",
+  "test_csv_sha256": "d0db3026e3a7bc397d6f59b7ff6825960cc32a5e2aef57df63c9140b2ad31e5d",
+  "train_pixels_sha256": "47af8b02cfcfb6cdf3dbbd1969ad7f1b70f4413f6f80f437b020ee4e5bc8304a",
+  "test_pixels_sha256": "075fb36956277e5f3b881e953b30c9b82a8a5b1d3db5da91f729093af74a377c"
+}
