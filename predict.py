@@ -1,6 +1,6 @@
 """Write a Kaggle submission (id,label) from a trained checkpoint.
 
-    python predict.py --checkpoint checkpoints/soup_kd2_model_final.pt --data data --out submission.csv
+    python predict.py --checkpoint checkpoints/soup_kd3_model_final.pt --data data --out submission.csv
 
 --data is the competition folder: it must contain test.csv (id,filename) and a test_images/ folder of 32x32 PNGs
 (nested folders are fine; both are searched for). Runs on a GPU when one is available, otherwise on the CPU
@@ -24,7 +24,7 @@ def find(root, name, want_dir=False):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--checkpoint", default="checkpoints/soup_kd2_model_final.pt")
+    ap.add_argument("--checkpoint", default="checkpoints/soup_kd3_model_final.pt")
     ap.add_argument("--arch", default=None, choices=list(CONFIGS),
                     help="architecture name; inferred from the checkpoint file name when omitted")
     ap.add_argument("--data", default="data", help="folder containing test.csv and test_images/")

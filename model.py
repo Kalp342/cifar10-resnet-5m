@@ -9,12 +9,14 @@ block design and differ only in stage widths / blocks per stage:
   teacher_b12_model_final.pt         128,256,512     3,4,3    18,470,538  teacher (seed 12, 200 epochs)
   teacher_w1_model_final.pt          96,192,384      3,4,3    10,393,834  teacher (seed 1, 160 epochs)
   teacher_w2_model_final.pt          96,192,384      3,4,3    10,393,834  teacher (seed 2, 160 epochs)
-  kd2_student_model_final.pt         64,128,256      3,5,3     4,918,602  student, Kaggle public 0.904 (10-view TTA)
-  soup_kd2_model_final.pt            64,128,256      3,5,3     4,918,602  model soup of kd2, Kaggle public 0.905 (10-view TTA)
+  kd2_student_model_final.pt         64,128,256      3,5,3     4,918,602  round-2 student, public 0.904
+  soup_kd2_model_final.pt            64,128,256      3,5,3     4,918,602  soup of the round-2 student, public 0.905 / private 0.865
+  soup_kd3_model_final.pt            64,128,256      3,5,3     4,918,602  soup of the round-3 SAM student: FINAL PICK,
+                                                                           public 0.905 / private 0.867 (10-view TTA)
 
 All were trained from scratch on the 50,000 competition training images only (no pretrained weights,
 no external data). Weights are the EMA (decay 0.999) weights; the soup is the uniform average of 4
-fine-tuned copies of kd2_student (BatchNorm running stats averaged too).
+fine-tuned copies of a student (BatchNorm running stats averaged too).
 
 Input pipeline (identical for every checkpoint):
   RGB uint8 image (32x32x3)  ->  float / 255  ->  (x - MEAN) / STD per channel  ->  NCHW tensor
@@ -23,7 +25,7 @@ checkpoints).
 
 Usage:
   from model import load_model, predict
-  net = load_model("soup_kd2_model_final.pt")             # architecture chosen from the file name
+  net = load_model("soup_kd3_model_final.pt")             # architecture chosen from the file name
   probs = predict(net, images_uint8_nhwc, views=10)         # (N, 10) softmax probabilities
 """
 import os
@@ -84,6 +86,9 @@ CONFIGS = {
     "teacher_w2": dict(widths=(96, 192, 384), blocks=(3, 4, 3)),
     "kd2_student": dict(widths=(64, 128, 256), blocks=(3, 5, 3)),
     "soup_kd2": dict(widths=(64, 128, 256), blocks=(3, 5, 3)),
+    "kd3_sam": dict(widths=(64, 128, 256), blocks=(3, 5, 3)),
+    "soup_kd3": dict(widths=(64, 128, 256), blocks=(3, 5, 3)),
+    "highres": dict(widths=(64, 128, 256), blocks=(3, 5, 3), strides=(1, 1, 2)),
 }
 
 

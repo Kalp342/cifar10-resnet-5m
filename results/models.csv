@@ -1,0 +1,14 @@
+model,round,widths,blocks,strides,trainable_params,epochs,seed,training_data,recipe,heldout_acc_flip_tta,public_leaderboard,private_leaderboard
+baseline_val,0,"64,128,256","3,4,3","1,2,2",4623178,200,42,45k / 5k held out,baseline recipe,97.64%,,
+sam_val,ablation,"64,128,256","3,4,3","1,2,2",4623178,200,42,45k / 5k held out,baseline + SAM (rho 0.05),97.76%,,
+baseline_full,0,"64,128,256","3,4,3","1,2,2",4623178,200,42,all 50k,baseline recipe,,,
+ensemble of baseline_val + baseline_full,0,,,,9246356,,,,"averaged softmax; 9.2M total, over the 5M limit",,0.898,
+teacher_w1 / teacher_w2,teacher,"96,192,384","3,4,3","1,2,2",10393834,160,1 / 2,all 50k,baseline recipe (not submitted),,,
+teacher_b11 / teacher_b12,teacher,"128,256,512","3,4,3","1,2,2",18470538,200,11 / 12,all 50k,baseline recipe (not submitted),,,
+kd_student,1,"64,128,256","3,4,3","1,2,2",4623178,300,7,all 50k,"distillation from w1, w2, baseline_full, baseline_val",,0.904,
+kd2_student,2,"64,128,256","3,5,3","1,2,2",4918602,500,21,all 50k,"distillation from b11, b12, w1, w2",,0.904,
+kd3_sam,3,"64,128,256","3,5,3","1,2,2",4918602,500,31,all 50k,kd2 recipe + SAM; kd2_student as 5th teacher,,0.903,0.870
+soup_kd2,4,"64,128,256","3,5,3","1,2,2",4918602,4 x 30 fine-tune,101-104,all 50k,weight average of 4 fine-tuned copies of kd2_student,,0.905,0.865
+soup_kd3 (FINAL PICK),4,"64,128,256","3,5,3","1,2,2",4918602,4 x 30 fine-tune,101-104,all 50k,weight average of 4 fine-tuned copies of kd3_sam,,0.905,0.867
+highres,5,"64,128,256","3,5,3","1,1,2",4918602,300,41,all 50k,"distillation from b11, b12, w1, w2; 3.1x compute per image",,0.903,0.870
+"compressed student (FINAL PICK, Rishi Ajith)",6,"64,128,256","3,5,3","1,2,2",4918602,40 fine-tune,,all 50k + unlabelled test images,soup_kd2 fine-tuned to match a 5-model ensemble on the unlabelled test images,,0.906,0.875
